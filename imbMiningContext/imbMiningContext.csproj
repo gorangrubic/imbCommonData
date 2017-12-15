@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>1</WarningLevel>
     <DocumentationFile>bin\Debug\imbMiningContext.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,25 +77,25 @@
       <HintPath>..\..\imbNLP\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Core, Version=0.1.6541.17791, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
+    <Reference Include="imbSCI.Core, Version=0.1.6558.4984, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Data, Version=0.1.6541.14062, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
+    <Reference Include="imbSCI.Data, Version=0.1.6558.4875, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.DataComplex, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6558.4985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Reporting, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6558.4985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.10.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\imbNLP\packages\MySql.Data.6.9.10\lib\net40\MySql.Data.dll</HintPath>
@@ -113,6 +114,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="imbMCManager.cs" />
+    <Compile Include="KM\business\imbKMCompany.cs" />
+    <Compile Include="KM\core\imbKMNode.cs" />
+    <Compile Include="KM\product\imbKMProductItem.cs" />
+    <Compile Include="MCDataPoints\imbDPBase.cs" />
+    <Compile Include="MCDataPoints\imbDPMunicipality.cs" />
+    <Compile Include="MCDataPoints\imbDPPhoneNumber.cs" />
+    <Compile Include="MCDataPoints\imbDPTown.cs" />
+    <Compile Include="MCDataPoints\imbMCDataPointBase.cs" />
+    <Compile Include="MCDocumentStructure\imbMCBlock.cs" />
+    <Compile Include="MCDocumentStructure\imbMCDocument.cs" />
+    <Compile Include="MCDocumentStructure\imbMCDocumentElement.cs" />
+    <Compile Include="MCDocumentStructure\imbMCStream.cs" />
+    <Compile Include="MCDocumentStructure\imbMCToken.cs" />
     <Compile Include="MCRepository\imbMCRepository.cs" />
     <Compile Include="MCWebPage\imbMCWebPage.cs" />
     <Compile Include="MCWebPage\imbMCWebPageEntry.cs" />
@@ -121,13 +135,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\imbCommonModels\imbCommonModels.csproj">
-      <Project>{bf5af5e2-96b2-4505-a9f5-54ab401b4333}</Project>
-      <Name>imbCommonModels</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="core\" />
+    <Folder Include="KM\finance\" />
+    <Folder Include="KM\material\" />
+    <Folder Include="KM\organization\" />
+    <Folder Include="KM\production\" />
+    <Folder Include="KM\techna\" />
+    <Folder Include="KM\technology\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -136,6 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="imbVeles_red64px.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\imbCommonModels\imbCommonModels.csproj">
+      <Project>{bf5af5e2-96b2-4505-a9f5-54ab401b4333}</Project>
+      <Name>imbCommonModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\imbNLP\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\..\imbNLP\packages\Accord.3.8.0\build\Accord.targets')" />

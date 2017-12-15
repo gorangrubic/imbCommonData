@@ -95,6 +95,12 @@ namespace imbCommonModels.contentBlock
         }
 
 
+        /// <summary>
+        /// Gets the content in specified format
+        /// </summary>
+        /// <param name="mode">The mode.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException">mode</exception>
         public string GetContent(nodeBlockOutputEnum mode)
         {
             switch (mode)

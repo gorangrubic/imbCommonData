@@ -59,6 +59,10 @@ namespace imbMiningContext
         /// </value>
         protected folderNode folder { get; set; }
 
+        public imbMCManager():base(MCManagerName, MCManagerHelpLine, null)
+        {
+
+        }
         
         public imbMCManager(IAceOperationSetExecutor __parent=null, string repoRootFolder = "") : base(__parent, MCManagerName, MCManagerHelpLine)
         {
@@ -99,21 +103,21 @@ namespace imbMiningContext
             [Description("If true, it will print out short report on content of the repository (if any)")] bool debug = false)
         {
                         
-imbMCRepository instance = null;
+            imbMCRepository instance = null;
 
-string path = folder.pathFor("\\" + repo);
+            string path = folder.pathFor("\\" + repo);
 
-if (Directory.Exists(path))
-{
-    instance = repo.LoadDataStructure<imbMCRepository>(folder, output);
-    instance.loger.log("Repository loaded ".add(log_msg, ". "));
-} else
-{
-    string descriptionForNew = "MC Repository created [" + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "]. " + log_msg;
-    instance = new imbMCRepository(repo, descriptionForNew, folder);
-    instance.loger.log("Repository created ".add(log_msg, ". "));
+            if (Directory.Exists(path))
+            {
+                instance = repo.LoadDataStructure<imbMCRepository>(folder, output);
+                instance.loger.log("Repository loaded ".add(log_msg, ". "));
+            } else
+            {
+                string descriptionForNew = "MC Repository created [" + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "]. " + log_msg;
+                instance = new imbMCRepository(repo, descriptionForNew, folder);
+                instance.loger.log("Repository created ".add(log_msg, ". "));
 
-}
+            }
 
             if (debug)
             {

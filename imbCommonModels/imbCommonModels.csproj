@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>1</WarningLevel>
     <DocumentationFile>bin\Debug\imbCommonModels.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,25 +77,25 @@
       <HintPath>..\..\imbNLP\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Network.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.0\lib\net40\imbACE.Services.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Core, Version=0.1.6541.17791, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
+    <Reference Include="imbSCI.Core, Version=0.1.6558.4984, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Core.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Data, Version=0.1.6541.14062, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
+    <Reference Include="imbSCI.Data, Version=0.1.6558.4875, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Data.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.DataComplex, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6558.4985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.DataComplex.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Reporting, Version=0.1.6541.17792, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6558.4985, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.0\lib\net40\imbSCI.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="LinqStatistics, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Terminals\semanticTerminalLight\packages\LinqStatistics.2.1.0\lib\net40\LinqStatistics.dll</HintPath>
@@ -182,6 +183,7 @@
     <Compile Include="webStructure\namespaceDoc.cs" />
     <Compile Include="webStructure\spiderLinkFlags.cs" />
     <Compile Include="webStructure\spiderWebElementState.cs" />
+    <Compile Include="webStructure\webSiteProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

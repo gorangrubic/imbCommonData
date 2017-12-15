@@ -40,6 +40,7 @@ namespace imbCommonModels.pageAnalytics.core
     using imbSCI.Data.interfaces;
     using imbSCI.Core.extensions.io;
     using imbACE.Network.extensions;
+    using imbCommonModels.contentMetrics.reports;
 
     //      using Newtonsoft.Json;
 
@@ -181,7 +182,7 @@ namespace imbCommonModels.pageAnalytics.core
             }
         }
 
-        
+        public metricsReport report { get; set; } = new metricsReport();
 
         #region -----------  pageCaption  -------  [Naslov koji je ucitan iz sadrzaja]
 

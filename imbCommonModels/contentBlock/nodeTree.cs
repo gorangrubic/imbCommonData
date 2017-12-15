@@ -35,11 +35,11 @@ namespace imbCommonModels.contentBlock
     using imbSCI.Data.collection.graph;
     using imbSCI.Data;
 
-    //public static List<nodeTree> expand(this IEnumerable<nodeTree> from)
-    //{
 
-    //}
-
+    /// <summary>
+    /// Tree structure tween of the <see cref="HtmlDocument"/> page
+    /// </summary>
+    /// <seealso cref="imbSCI.Data.collection.graph.graphWrapNode{imbCommonModels.contentBlock.htmlWrapper}" />
     public class nodeTree:graphWrapNode<htmlWrapper>
     {
 
@@ -96,7 +96,7 @@ namespace imbCommonModels.contentBlock
         /// <returns></returns>
         public override graphWrapNode<htmlWrapper> Add(string __name)
         {
-            if (!children.ContainsKey(__name))
+            if (!children.Contains(__name))
             {
                 var tkng = new nodeTree(__name, this);
                 children.Add(__name, tkng);
@@ -135,11 +135,24 @@ namespace imbCommonModels.contentBlock
         //}
 
 
+        /// <summary>
+        /// Splits the page content into <c>targetBlockCount</c> number of blocks using heuristic algorithm of SM-Crawlers
+        /// </summary>
+        /// <param name="targetBlockCount">The target block count.</param>
+        /// <returns></returns>
         public nodeBlockCollection getBlocks(int targetBlockCount = 3)
         {
             nodeBlockCollection output = new nodeBlockCollection();
 
-            List<graphWrapNode<htmlWrapper>> lst = children.Values.ToList();
+
+            List<graphWrapNode<htmlWrapper>> lst = new List<graphWrapNode<htmlWrapper>>();
+            
+            foreach (graphWrapNode<htmlWrapper> w in this)
+            {
+                lst.Add(w);
+            }
+            
+            //children.Values.ToList();
             lst.Sort((x, y) => y.item.score.CompareTo(x.item.score));
 
 
@@ -159,45 +172,7 @@ namespace imbCommonModels.contentBlock
                     lst.Clear();
                 }
 
-                /*
-                if (lst.Count()==0) {
-                    
-                    
-                }
-                else if (lst.Count() == 1)
-                {
-                   // lst.Remove(lst[0]);
-
-                    // <----- pass it to the expansion
-
-                } else if (lst.Count() == 2)
-                {
-                    output.AddNewBlock(lst[0]); //.item);
-                    lst.Remove(lst[0]);
-                    // <----- takes the first and explands the others
-                }
-                else if (lst.count() == 3)
-                {
-                    output.AddNewBlock(lst[0]);
-                    output.AddNewBlock(lst[1]);
-                    output.AddNewBlock(lst[2]);
-                    lst.Remove(lst[0]);
-                    lst.Remove(lst[0]);
-                    lst.Remove(lst[0]);
-                } else
-                {
-                    output.AddNewBlock(lst[0]);
-                    output.AddNewBlock(lst[1]);
-                    lst.Remove(lst[0]);
-                    lst.Remove(lst[0]);
-
-                    output.Add(new nodeBlock(lst.ToList()));
-                    lst.Clear();
-
-                    // <----- takes the first two and creates third from the rest of the nodes
-                    break;
-                }
-                */
+               
 
                 foreach (graphWrapNode<htmlWrapper> ch in lst.ToList())
                 {

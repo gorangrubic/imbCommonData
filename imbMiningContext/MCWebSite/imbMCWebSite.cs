@@ -41,7 +41,6 @@ namespace imbMiningContext.MCWebSite
     /// <summary>
     /// Repository holding Mining Context corpus for a set of web site
     /// </summary>
-    /// <seealso cref="aceCommonTypes.files.fileDataStructure.IFileDataStructure" />
     [DisplayName("Web site content repository")]
 [Description(@"All crawled pages from a domain, approved for data mining / knowledge extraction, are contained in this repository.
 The repository also covers general objects&data about the web site.")]

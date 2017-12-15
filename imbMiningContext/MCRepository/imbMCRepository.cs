@@ -48,6 +48,8 @@ namespace imbMiningContext.MCRepository
     using imbSCI.DataComplex.tables;
     using imbSCI.Core.math;
     using imbSCI.Data.enums;
+    using imbSCI.Data.data.sample;
+    using imbSCI.Core.files;
 
     //public abstract class imbMCRepositoryBase:fileDataStructure
 
@@ -187,14 +189,17 @@ namespace imbMiningContext.MCRepository
         }
 
         /// <summary>
-        /// Builds or updates web site repositorium using crawling information. 
+        /// Builds or updates web site repositorium using crawling information.
         /// </summary>
-        /// <remarks>
-        /// This method uses completed DLC information to create <see cref="imbMCWebSite"/> repository and <see cref="imbMCWebPage"/> for all proper targets
-        /// </remarks>
         /// <param name="targetCollection">Collection of SpiderTargets, populated by DLC crawl</param>
         /// <param name="domainInfo">DLC domain information</param>
-        /// <returns>Reference to created or updated web site repository</returns>
+        /// <param name="output">The output.</param>
+        /// <returns>
+        /// Reference to created or updated web site repository
+        /// </returns>
+        /// <remarks>
+        /// This method uses completed DLC information to create <see cref="imbMCWebSite" /> repository and <see cref="imbMCWebPage" /> for all proper targets
+        /// </remarks>
         public imbMCWebSite BuildWebSite(ISpiderTargetCollection targetCollection, domainAnalysis domainInfo, ILogBuilder output = null)
         {
             //Int32 siteCount = siteTable.Count;
@@ -403,18 +408,55 @@ namespace imbMiningContext.MCRepository
 
         }
 
-
-
         /// <summary>
-        /// Returns repository instances for all web sites registered in <see cref="imbMCRepository.siteTable"/>
+        /// Checks and recovers the site table, if broken
         /// </summary>
         /// <param name="output">The output.</param>
-        /// <returns></returns>
-        public List<imbMCWebSite> GetAllWebSites(ILogBuilder output = null)
+        public void CheckSiteTable(ILogBuilder output = null)
+        {
+            if (siteTable.Count > 0) return;
+
+            if (output!=null) output.log("The repository siteTable is empty... trying to autoconstruct the list");
+
+            List<String> entryFiles = folder.findFiles("entry.xml", SearchOption.AllDirectories);
+
+            foreach (String enFile in entryFiles) {
+
+                var entry = objectSerialization.loadObjectFromXML<imbMCWebSiteEntry>(enFile, output);
+                siteTable.Add(entry);
+            }
+
+            siteTable.Save();
+
+            if (siteTable.Count > 0)
+            {
+                output.log("[" + siteTable.Count + "] Site Table entries reconstructed, table saved");
+            } else
+            {
+                output.log("[" + siteTable.Count + "] no entries discovered, reconstruction failed");
+            }
+        }
+
+        /// <summary>
+        /// Returns repository instances for all web sites registered in <see cref="imbMCRepository.siteTable" />, if <c>takeSettings</c> used then returns sampleTake
+        /// </summary>
+        /// <param name="output">The log output.</param>
+        /// <param name="takeSettings">If specified it will return only fraction of web sites, according to the sampling settings.</param>
+        /// <returns>All web sites in the repo, or sampleTake if sampling settings specified</returns>
+        public List<imbMCWebSite> GetAllWebSites(ILogBuilder output = null, samplingSettings takeSettings = null)
         {
             if (output == null) output = aceLog.loger;
 
+            CheckSiteTable(output);
+
             List<imbMCWebSiteEntry> all = siteTable.GetList();
+            
+            if (takeSettings != null)
+            {
+                all = new sampleTake<imbMCWebSiteEntry>(all, takeSettings);
+            }
+            
+
 
             List<imbMCWebSite> sites = new List<imbMCWebSite>();
 
@@ -432,16 +474,25 @@ namespace imbMiningContext.MCRepository
 
 
         /// <summary>
-        /// Gets all web pages registered in the <see cref="imbMCWebSite.pageTable"/>
+        /// Gets all web pages registered in the <see cref="imbMCWebSite.pageTable" /> loaded, if <c>takeSettings</c> used then returns sampleTake
         /// </summary>
-        /// <param name="site">The site to get pages of</param>
-        /// <param name="output">Loger to use for messages</param>
-        /// <returns>List of all page repositories</returns>
-        public List<imbMCWebPage> GetAllWebPages(imbMCWebSite site, ILogBuilder output = null)
+        /// <param name="site">The site repo to take pages for</param>
+        /// <param name="output">The log output.</param>
+        /// <param name="takeSettings">If specified it will return only fraction of web sites, according to the sampling settings.</param>
+        /// <returns>
+        /// All web pages in the site repo , or sampleTake if sampling settings specified
+        /// </returns>
+        public List<imbMCWebPage> GetAllWebPages(imbMCWebSite site, ILogBuilder output = null, samplingSettings takeSettings = null)
         {
             if (output == null) output = aceLog.loger;
 
             var all = site.pageTable.GetList();
+
+            if (takeSettings != null)
+            {
+                all = new sampleTake<imbMCWebPageEntry>(all, takeSettings);
+            }
+
             List<imbMCWebPage> pages = new List<imbMCWebPage>();
 
             foreach (var pe in all)
@@ -455,6 +506,10 @@ namespace imbMiningContext.MCRepository
 
             return pages;
         }
+
+
+        
+
 
 
         public override void OnLoaded()

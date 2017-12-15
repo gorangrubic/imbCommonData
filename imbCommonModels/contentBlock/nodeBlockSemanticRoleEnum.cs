@@ -29,11 +29,23 @@
 // ------------------------------------------------------------------------------------------------------------------
 namespace imbCommonModels.contentBlock
 {
+    /// <summary>
+    /// Estimated semantic role of the document block
+    /// </summary>
     public enum nodeBlockSemanticRoleEnum
     {
         none,
+        /// <summary>
+        /// The navigation: the block with navigation links
+        /// </summary>
         navigation,
+        /// <summary>
+        /// The information: the block with information content
+        /// </summary>
         information,
+        /// <summary>
+        /// The reserve: other kind of block
+        /// </summary>
         reserve
     }
 }
