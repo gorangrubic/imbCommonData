@@ -1,5 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="imbMCBlock.cs" company="imbVeles" >
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="itmComponentEnum.cs" company="imbVeles" >
 //
 // Copyright (C) 2017 imbVeles
 //
@@ -27,37 +27,33 @@
 // Email: hardy@veles.rs
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
-using HtmlAgilityPack;
-using imbCommonModels.contentBlock;
-using imbSCI.Data.collection.graph;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using imbMiningContext.TFModels.core;
+using imbSCI.DataComplex.tables;
 using System.Text;
+using System.ComponentModel;
+using imbSCI.Core.attributes;
 
-namespace imbMiningContext.MCDocumentStructure
+namespace imbMiningContext.TFModels.ILRT
 {
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="imbMiningContext.MCDocumentStructure.imbMCDocumentElement" />
-    public class imbMCBlock: imbMCDocumentElement
+    public enum itmComponentEnum
     {
-        public imbMCBlock()
-        {
-
-        }
-        public nodeBlock blockModel { get; set; }
-
-        /// <summary>
-        /// Extracted text content from the block
-        /// </summary>
-        /// <value>
-        /// The content of the text.
-        /// </value>
-        public String textContent { get; set; }
+        none,
+        inIndustry,
+        inBusiness,
+        irrelevant
     }
 
+    public enum itmModelEnum
+    {
+        none,
+        wordTFIDF,
+        chunkTFIDF,
+        wordTFIDF_complex,
+        semantic,
+    }
 
 }

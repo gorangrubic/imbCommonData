@@ -33,6 +33,7 @@ namespace imbMiningContext
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
+    using imbACE.Core;
     using imbACE.Core.operations;
     using imbACE.Services.consolePlugins;
     using imbMiningContext.MCRepository;
@@ -50,6 +51,15 @@ namespace imbMiningContext
         public const string MCRepo_DefaultDirectoryName = "MCRepo";
         public const string MCManagerHelpLine = "Manager plugin takes care about MC repositories, loads, creates and provides the instances.";
         public const string MCManagerName = "MC Manager Plugin";
+
+        /// <summary>
+        /// Gets the mc repo node.
+        /// </summary>
+        /// <returns></returns>
+        public static folderNode GetMCRepoNode()
+        {
+            return appManager.Application.folder_resources.createDirectory(MCRepo_DefaultDirectoryName, "MC repository directory", false);   //.path + Path.DirectorySeparatorChar + MCRepo_DefaultDirectoryName);
+        }
 
         /// <summary>
         /// Currently selected folder
@@ -71,7 +81,7 @@ namespace imbMiningContext
                 repoRootFolder = MCRepo_DefaultDirectoryName;
             }
 
-            folder = new folderNode(repoRootFolder, "MC repositories", "Root directory of a MC Repository Manager");
+            folder = GetMCRepoNode(); //new folderNode(repoRootFolder, "MC repositories", "Root directory of a MC Repository Manager");
         }
 
 

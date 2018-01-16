@@ -64,6 +64,8 @@ namespace imbCommonModels.pageAnalytics.core
         /// Releases memory taken by loaded <see cref="HtmlDocument"/>
         /// </summary>
         void releaseDocumentFromMemory();
+
+        string responseUrl { get; }
     }
 
 }

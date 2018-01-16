@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="imbMCBlock.cs" company="imbVeles" >
+// <copyright file="industryLemmaRankTable.cs" company="imbVeles" >
 //
 // Copyright (C) 2017 imbVeles
 //
@@ -27,37 +27,29 @@
 // Email: hardy@veles.rs
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
-using HtmlAgilityPack;
-using imbCommonModels.contentBlock;
-using imbSCI.Data.collection.graph;
+using imbMiningContext.TFModels.core;
+using imbSCI.DataComplex.tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace imbMiningContext.MCDocumentStructure
+namespace imbMiningContext.TFModels.ILRT
 {
-
     /// <summary>
-    /// 
+    /// Table of industry related lemma-terms, having their scores. Precompiled version of table, ready for saving and application
     /// </summary>
-    /// <seealso cref="imbMiningContext.MCDocumentStructure.imbMCDocumentElement" />
-    public class imbMCBlock: imbMCDocumentElement
+    /// <seealso cref="imbSCI.DataComplex.tables.objectTable{imbMiningContext.TFModels.ILRT.industryLemmaTerm}" />
+    public class industryLemmaRankTable : objectTable<industryLemmaTerm>
     {
-        public imbMCBlock()
-        {
-
-        }
-        public nodeBlock blockModel { get; set; }
-
         /// <summary>
-        /// Extracted text content from the block
+        /// New instance of industry rank table 
         /// </summary>
-        /// <value>
-        /// The content of the text.
-        /// </value>
-        public String textContent { get; set; }
+        /// <param name="__filePath">The file path.</param>
+        /// <param name="autoLoad">if set to <c>true</c> [automatic load].</param>
+        /// <param name="__tableName">Name of the table.</param>
+        public industryLemmaRankTable(string __filePath, bool autoLoad, string __tableName = "") : base(__filePath, autoLoad, nameof(termLemmaBase.name), __tableName)
+        {
+        }
     }
-
-
 }

@@ -42,7 +42,7 @@ namespace imbCommonModels.pageAnalytics.core
     using imbACE.Network.extensions;
     using imbCommonModels.contentMetrics.reports;
 
-    //      using Newtonsoft.Json;
+    //      // using Newtonsoft.Json;
 
     #endregion
 
@@ -74,14 +74,6 @@ namespace imbCommonModels.pageAnalytics.core
 
      
 
-
-        //public crawledPage(webResult __result, Int32 __depth = 0):this((webResponse) __result?.response, __depth)
-        ////: base(result.response.responseUrl, __depth)
-        //{
-        //    result = __result;
-            
-        //}
-
        
         /// <summary>
         /// Vrši pripremu informacija o stranici
@@ -107,60 +99,7 @@ namespace imbCommonModels.pageAnalytics.core
             status = pageStatus.scheduled;
         }
 
-        ///// <summary>
-        ///// Stranica koja je pronadjena ili vec ucitana
-        ///// </summary>
-        ///// <param name="urlToLoad"></param>
-        ///// <param name="__depth"></param>
-        ///// <param name="inputLink"></param>
-        //public crawledPage(link inputLink, Int32 __depth)
-        //    : base(inputLink.url, __depth)
-        //{
-        //    caption = inputLink.caption;
-        //}
-
-        //#region --- tokenizedContent ------- sadrzaj nakon inicjalne tokenizacije
-
-        //private IContentPage _tokenizedContent;
-
-        ///// <summary>
-        ///// sadrzaj nakon inicjalne tokenizacije
-        ///// </summary>
-        //[XmlIgnore]
-        //public IContentPage tokenizedContent
-        //{
-        //    get { return _tokenizedContent; }
-        //    set
-        //    {
-        //        _tokenizedContent = value;
-        //        OnPropertyChanged("tokenizedContent");
-        //    }
-        //}
-
-        //#endregion
-
-      //  #region -----------  xpathStruktura  -------  [XPath string opis strukture]
-
-       // private List<String> _xpathStruktura = new List<string>();
-
-       // /// <summary>
-       // /// XPath string opis strukture
-       // /// </summary>
-       // /// [XmlIgnore]
-       //// [JsonProperty]
-       // [Category("Content")]
-       // [DisplayName("xpathStruktura")]
-       // [Description("XPath string opis strukture")]
-       // public List<String> xpathStruktura
-       // {
-       //     get { return _xpathStruktura; }
-       //     set
-       //     {
-       //         _xpathStruktura = value;
-       //         OnPropertyChanged("xpathStruktura");
-       //     }
-       // }
-
+       
         
         private pageStatus _status = pageStatus.unknown;
 
@@ -171,7 +110,7 @@ namespace imbCommonModels.pageAnalytics.core
         [Category("Page")]
         [DisplayName("status")]
         [Description("Status stranice")]
-       // [JsonProperty]
+       // // [JsonProperty]
         public pageStatus status
         {
             get { return _status; }
@@ -195,7 +134,7 @@ namespace imbCommonModels.pageAnalytics.core
         [Category("Page")]
         [DisplayName("pageCaption")]
         [Description("Naslov koji je ucitan iz sadrzaja")]
-       // [JsonProperty]
+       // // [JsonProperty]
         public string pageCaption
         {
             get { return _pageCaption; }

@@ -97,23 +97,24 @@ namespace imbCommonModels.structure
         /// <summary>
         /// Pravi Link objekat na osnovu xPathNavigator objekta i podesavanja
         /// </summary>
-        /// <param name="__nav"></param>
-        /// <param name="__flags"></param>
-        public link(XPathNavigator __nav, linkProcessFlags __flags = linkProcessFlags.standard)
-            : base()
+        /// <param name="__nav">The nav.</param>
+        /// <param name="__flags">The flags.</param>
+        public link(XPathNavigator __nav, linkProcessFlags __flags = linkProcessFlags.standard):base()
         {
-            if (string.IsNullOrEmpty(__nav.Name))
-            {
-            }
+            processNode(__nav, __flags);
+        }
+
+        /// <summary>
+        /// Processes the node.
+        /// </summary>
+        /// <param name="__nav">The nav.</param>
+        /// <param name="__flags">The flags.</param>
+        public void processNode(XPathNavigator __nav, linkProcessFlags __flags = linkProcessFlags.standard)
+        {
             string __tagName = __nav.Name.ToLower();
             linkTag __tag = linkTag.unknown;
-
-            if (Enum.TryParse(__tagName, out __tag))
-            {
-                tag = __tag;
-            }
+            if (Enum.TryParse(__tagName, out __tag)) tag = __tag;
             string __tmpUrl = "";
-
             HtmlNodeNavigator nodeNav = __nav as HtmlNodeNavigator;
             html = nodeNav.CurrentNode as HtmlNode;
             xPath = html.XPath;
@@ -124,9 +125,6 @@ namespace imbCommonModels.structure
                     __tmpUrl = __nav.GetAttribute("href", "");
                     attribute = linkAttribute.href;
                     nature = linkNature.navigation;
-
-                    
-
                     if (__nav.HasChildren)
                     {
                         int i = 0;
@@ -134,16 +132,18 @@ namespace imbCommonModels.structure
                         caption = "";
                         foreach (XPathItem child in children)
                         {
+                            
                             caption = caption.add(child.Value);
                             i++;
                             if (i > NODELINK_LIMIT) break;
                         }
-                         
-                    } else
+                        XPathNodeIterator imgn = __nav.Select("img");
+                        if (imgn == null) caption += imgn.Current.GetAttribute("alt", "");
+                    }
+                    else
                     {
                         caption = __nav.Value;
                     }
-
                     break;
                 case linkTag.link:
                     __tmpUrl = __nav.GetAttribute("href", "");
@@ -154,8 +154,8 @@ namespace imbCommonModels.structure
                 case linkTag.img:
                 case linkTag.script:
                     attribute = linkAttribute.src;
-
                     __tmpUrl = __nav.GetAttribute("src", "");
+                    name = __nav.GetAttribute("alt", "");
                     break;
                 default:
                     attribute = linkAttribute.unknown;
@@ -176,27 +176,11 @@ namespace imbCommonModels.structure
                     break;
             }
 
-
-            if (string.IsNullOrEmpty(caption))
-            {
-                caption = "";
-                /*
-                caption = tag.ToString();
-                imbStringReporting.Append(caption, __nav.GetAttribute("rel", ""), " rel:");
-                imbStringReporting.Append(caption, __nav.GetAttribute("type", ""), " type:");
-                imbStringReporting.Append(caption, __nav.GetAttribute("media", ""), " media:");
-                imbStringReporting.Append(caption, __nav.GetAttribute("src", ""), " src:");
-                */
-            }
-
             _processUrl(__tmpUrl, __flags);
 
-
-            if (features.Contains(linkFeatures.mailToLink))
-            {
-                nature = linkNature.mailTo;
-            }
+            if (features.Contains(linkFeatures.mailToLink)) nature = linkNature.mailTo;
         }
+
 
         #region -----------  tag  -------  [vrsta link taga]
 

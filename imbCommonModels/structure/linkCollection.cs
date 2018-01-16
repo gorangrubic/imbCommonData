@@ -109,18 +109,7 @@ namespace imbCommonModels.structure
         /// <param name="parentNode"></param>
         public void deployCollection(link parentNode)
         {
-            if (flags.Contains(linkProcessFlags.findMainQueryParam))
-            {
-                paramRank.clear();
-
-                foreach (link l in this)
-                {
-                    paramRank.Add(l.queryPairs);
-                }
-
-                paramTopScored = paramRank.getTopScored();
-            }
-
+                     
             // odredjivanje scope-a linkova
             foreach (link l in this)
             {
@@ -134,28 +123,28 @@ namespace imbCommonModels.structure
                     {
                         if (l.path == parentNode.path)
                         {
-                            if (l.queryPairs.ContainsKey(paramTopScored))
-                            {
-                                if (parentNode.queryPairs.ContainsKey(paramTopScored))
-                                {
-                                    if (l.queryPairs[paramTopScored] != parentNode.queryPairs[paramTopScored])
-                                    {
-                                        l.scope = linkScope.inner;
-                                    }
-                                    else
-                                    {
-                                        l.scope = linkScope.onPage;
-                                    }
-                                }
-                                else
-                                {
-                                    l.scope = linkScope.inner;
-                                }
-                            }
-                            else
-                            {
+                            //if (l.queryPairs.ContainsKey(paramTopScored))
+                            //{
+                            //    if (parentNode.queryPairs.ContainsKey(paramTopScored))
+                            //    {
+                            //        if (l.queryPairs[paramTopScored] != parentNode.queryPairs[paramTopScored])
+                            //        {
+                            //            l.scope = linkScope.inner;
+                            //        }
+                            //        else
+                            //        {
+                            //            l.scope = linkScope.onPage;
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        l.scope = linkScope.inner;
+                            //    }
+                            //}
+                            //else
+                            //{
                                 l.scope = linkScope.onPage;
-                            }
+                            //}
                         }
                         else
                         {
@@ -164,7 +153,7 @@ namespace imbCommonModels.structure
                     }
                     else
                     {
-                        if (l.domain == parentNode.domain)
+                        if (l.domain.Contains(parentNode.domain))
                         {
                             l.scope = linkScope.inner;
                         }
@@ -184,12 +173,9 @@ namespace imbCommonModels.structure
             }
 
 
-            updateDictionaries();
+            updateDictionaries(); // < ------ do ovde stize ---- prolazi
 
-            foreach (link l in byScope[linkScope.inner])
-            {
-                // l.setFullUrl(l.getAbsoluteUrl(parentNode, flags));
-            }
+           
         }
 
 
@@ -231,23 +217,21 @@ namespace imbCommonModels.structure
             _byScope.Clear();
             foreach (link l in this)
             {
-                _byNature[l.nature].Add(l);
-                _byScope[l.scope].Add(l);
-                //_byNature[l.nature].Add(l.name, l);
-                //_byScope[l.scope].Add(l.name, l);
+                _byNature.Add(l.nature, l); // <------------------ ovde puca
+                _byScope.Add(l.scope,l);
             }
         }
 
         #region --- byNature ------- pristup linkovima prema prirodi linka
 
-        private aceEnumListSet<linkNature, link> _byNature = new aceEnumListSet<linkNature, link>();
+        private aceDictionarySet<linkNature, link> _byNature = new aceDictionarySet<linkNature, link>();
             //new imbCollectionMetaCategorized<link, linkNature>("name");
 
         /// <summary>
         /// pristup linkovima prema prirodi linka
         /// </summary>
         [XmlIgnore]
-        public aceEnumListSet<linkNature, link> byNature 
+        public aceDictionarySet<linkNature, link> byNature 
         {
             get
             {
@@ -264,13 +248,13 @@ namespace imbCommonModels.structure
 
         #region --- byScope ------- pristup linkovima prema scope-u linka 
 
-        private aceEnumListSet<linkScope, link> _byScope = new aceEnumListSet<linkScope, link>();
+        private aceDictionarySet<linkScope, link> _byScope = new aceDictionarySet<linkScope, link>();
            // new imbCollectionMetaCategorized<link, linkScope>("name");
 
         /// <summary>
         /// pristup linkovima prema scope-u linka
         /// </summary>
-        public aceEnumListSet<linkScope, link> byScope
+        public aceDictionarySet<linkScope, link> byScope
         {
             get
             {

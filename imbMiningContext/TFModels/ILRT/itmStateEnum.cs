@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="imbDPBase.cs" company="imbVeles" >
+// <copyright file="itmStateEnum.cs" company="imbVeles" >
 //
 // Copyright (C) 2017 imbVeles
 //
@@ -27,33 +27,54 @@
 // Email: hardy@veles.rs
 // </summary>
 // ------------------------------------------------------------------------------------------------------------------
-using imbSCI.Core.extensions.text;
-using imbSCI.Data.collection.graph;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
+using System.Collections.Generic;
+using imbMiningContext.TFModels.core;
+using imbSCI.DataComplex.tables;
 using System.Text;
+using System.ComponentModel;
+using imbSCI.Core.attributes;
 
-namespace imbMiningContext.MCDataPoints
+namespace imbMiningContext.TFModels.ILRT
 {
 
+
     /// <summary>
-    /// Data point is complexier token flag, containing additional data structure, in graph-tree form
+    /// Enumeration about ITM model state
     /// </summary>
-    public abstract class imbDPBase:graphNodeCustom
+    [Flags]
+    public enum itmStateEnum
     {
-        protected override bool doAutorenameOnExisting { get { return true; } }
+        none = 0,
+        inIndustry = 1<<0,
+        inBusiness = 1<<1,
+        irrelevant = 1<<2,
 
-        protected override bool doAutonameFromTypeName { get { return true; } }
-
-        /// <summary>
-        /// Deploys the data row.
-        /// </summary>
-        /// <param name="dr">The dr.</param>
-        public abstract void DeployDataRow(DataRow dr);
+        initiated = 1<<3,
         
+        ready = 1<<5,
+        notReady = 1<<6,
 
+        sample = 1<<10,
+        MCRepo = 1<<11,
+        WLTable = 1<<12,
+        industryTable = 1 << 13,
+
+
+        inIndustrySampleReady = inIndustry | sample | ready,
+        inBusinessSampleReady = inBusiness | sample | ready,
+        irrelevantSampleReady = irrelevant | sample | ready,
+
+        inIndustryRepoReady = inIndustry | MCRepo | ready,
+        inBusinessRepoReady = inBusiness | MCRepo | ready,
+        irrelevantRepoReady = irrelevant | MCRepo | ready,
+
+        inIndustryWLTableReady = inIndustry | WLTable | ready,
+        inBusinessWLTableReady = inBusiness | WLTable | ready,
+        irrelevantWLTableReady = irrelevant | WLTable | ready,
+
+        industryTableReady = industryTable | ready
 
     }
 

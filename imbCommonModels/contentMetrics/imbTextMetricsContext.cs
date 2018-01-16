@@ -40,7 +40,7 @@ namespace imbCommonModels.contentMetrics
     /// </summary>
     /// <remarks>
     /// Ovaj low-level Context objekat treba pre svega da sadrži rezultat rada nekog modula. 
-    /// Ako sadrži neka privremena podešavanja i vrednosti treba ih označiti sa: [XmlIgnore] [JsonIgnore]
+    /// Ako sadrži neka privremena podešavanja i vrednosti treba ih označiti sa: [XmlIgnore] // [JsonIgnore]
     /// Ukoliko treba da razmenjuje veliki broj podešavanja sa imbResourceContextualModul-om onda treba napraviti specijalizovanu klasu sa podešavanjima: imbTextMetricsSettings
     /// </remarks>
     public class imbTextMetricsContext 

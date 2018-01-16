@@ -103,7 +103,10 @@ namespace imbCommonModels.contentBlock
                 return tkng;
             } else
             {
-                this[__name].item.score++;
+                var chd = this[__name];
+
+                graphWrapNode<htmlWrapper> wchd = chd as graphWrapNode<htmlWrapper>;
+                wchd.item.score++;
             }
             return (graphWrapNode<htmlWrapper>)this[__name] as graphWrapNode<htmlWrapper>;
         }

@@ -50,6 +50,7 @@ namespace imbMiningContext.MCRepository
     using imbSCI.Data.enums;
     using imbSCI.Data.data.sample;
     using imbSCI.Core.files;
+    
 
     //public abstract class imbMCRepositoryBase:fileDataStructure
 
@@ -73,6 +74,12 @@ namespace imbMiningContext.MCRepository
             
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="imbMCRepository"/> class.
+        /// </summary>
+        /// <param name="__name">The name.</param>
+        /// <param name="__description">The description.</param>
+        /// <param name="__parentFolder">The parent folder.</param>
         public imbMCRepository(string __name, string __description, folderNode __parentFolder)
         {
             name = __name;
@@ -286,6 +293,22 @@ namespace imbMiningContext.MCRepository
             return page;
         }
 
+        public void DeleteAll(ILogBuilder output)
+        {
+            var ws = GetAllWebSites(output);
+
+            output.log("Deleting [" + ws.Count + "] web sites from MCRepository [" + name + "]");
+
+            foreach (var w in ws)
+            {
+                DeleteWebSite(w.domainInfo.domainRootName, output);
+            }
+            
+            
+        }
+
+
+
 
         /// <summary>
         /// Deletes the web site repository entry and its directory
@@ -317,9 +340,32 @@ namespace imbMiningContext.MCRepository
                 if (Directory.Exists(p))
                 {
                     removed = true;
-                    Directory.Delete(p);
 
-                    msg += " - but directory [ _" + p + "_ ] is deleted.";
+                    //DirectoryInfo di = new DirectoryInfo(p);
+                    //di.DeleteFolder();
+
+                    //var fls = di.GetFiles("*.*", SearchOption.AllDirectories);
+                    
+                    //foreach (var fl in fls)
+                    //{
+                    //    fl.Delete();
+                    //}
+
+                    //var dirs = di.GetDirectories();
+
+                    //foreach (var fl in dirs)
+                    //{
+                    //    foreach (var d in fl.GetFiles())
+                    //    {
+                    //        d.Delete();
+                    //    }
+
+                    //    fl.Delete();
+                    //}
+
+                    //Directory.Delete(p);
+
+                 //   msg += " - but directory [ _" + p + "_ ] is deleted.";
                 }
 
             }
@@ -509,7 +555,10 @@ namespace imbMiningContext.MCRepository
 
 
         
-
+        public void Save(ILogBuilder output=null)
+        {
+            this.SaveDataStructure(parentFolder, output);
+        }
 
 
         public override void OnLoaded()

@@ -53,11 +53,11 @@ namespace imbMiningContext.MCWebPage
         [XmlIgnore]
         public imbMCWebPageEntry entry { get; set; }
 
-        [XmlIgnore]
-        [fileData(fileDataFilenameMode.memberInfoName, fileDataPropertyMode.XML)]
+        // [XmlIgnore]
+        // [fileData(fileDataFilenameMode.memberInfoName, fileDataPropertyMode.XML)]
         [DisplayName("Index entry")]
         [Description("Entry, about this page, in the index database")] // [imb(imbAttributeName.reporting_escapeoff)]
-        public indexPage indexEntry { get; set; }
+        public indexPage indexEntry { get; set; } 
 
 
         /// <summary> Extracted text content - without navigation block </summary>
@@ -72,7 +72,7 @@ namespace imbMiningContext.MCWebPage
         /// <summary> navigation block text extract, each link in new line </summary>
         [Category("Label")]
         [DisplayName("LinkContent")]
-        [Description("navigation block text extract, each link in new line")] // [imb(imbAttributeName.reporting_escapeoff)]
+        [Description("navigation block text extract, each link in new line")]
         [XmlIgnore]
         [fileData(fileDataFilenameMode.memberInfoName, fileDataPropertyMode.text)]
         public List<string> LinkContent { get; set; } = new List<string>();
@@ -113,6 +113,8 @@ namespace imbMiningContext.MCWebPage
         [fileData("block", fileDataPropertyMode.XML, fileDataPropertyOptions.itemAsFile)]
         [XmlIgnore]
         public List<nodeBlock> Blocks { get; set; } =  new List<nodeBlock>();
+
+
 
         /// <summary>
         /// Precompiled TF-IDF table for this page
