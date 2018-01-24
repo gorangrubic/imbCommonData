@@ -77,32 +77,32 @@
       <HintPath>..\..\imbNLP\packages\HtmlAgilityPack.1.6.5\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Core, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.1\lib\net40\imbACE.Core.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.7\lib\net40\imbACE.Core.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Network, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.1\lib\net40\imbACE.Network.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.7\lib\net40\imbACE.Network.dll</HintPath>
     </Reference>
     <Reference Include="imbACE.Services, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbACE.0.1.2.1\lib\net40\imbACE.Services.dll</HintPath>
+      <HintPath>..\packages\imbACE.0.1.2.7\lib\net40\imbACE.Services.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Core, Version=0.1.6590.28479, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.2\lib\net40\imbSCI.Core.dll</HintPath>
+    <Reference Include="imbSCI.Core, Version=0.1.6598.31781, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.16\lib\net40\imbSCI.Core.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Data, Version=0.1.6584.23942, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.2\lib\net40\imbSCI.Data.dll</HintPath>
+    <Reference Include="imbSCI.Data, Version=0.1.6598.24488, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.16\lib\net40\imbSCI.Data.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.DataComplex, Version=0.1.6590.28480, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.2\lib\net40\imbSCI.DataComplex.dll</HintPath>
+    <Reference Include="imbSCI.DataComplex, Version=0.1.6598.31787, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.16\lib\net40\imbSCI.DataComplex.dll</HintPath>
     </Reference>
-    <Reference Include="imbSCI.Reporting, Version=0.1.6590.28481, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\imbSCI.0.1.2.2\lib\net40\imbSCI.Reporting.dll</HintPath>
+    <Reference Include="imbSCI.Reporting, Version=0.1.6598.31787, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\imbSCI.0.1.2.16\lib\net40\imbSCI.Reporting.dll</HintPath>
     </Reference>
     <Reference Include="LinqStatistics, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Terminals\semanticTerminalLight\packages\LinqStatistics.2.1.0\lib\net40\LinqStatistics.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\imbNLP\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    <Reference Include="MathNet.Numerics, Version=3.20.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.20.2\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Spatial, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\imbNLP\packages\MathNet.Spatial.0.4.0\lib\net40\MathNet.Spatial.dll</HintPath>

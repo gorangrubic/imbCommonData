@@ -469,6 +469,12 @@ namespace imbMiningContext.MCRepository
             foreach (String enFile in entryFiles) {
 
                 var entry = objectSerialization.loadObjectFromXML<imbMCWebSiteEntry>(enFile, output);
+                FileInfo fi = new FileInfo(enFile);
+                if (fi.DirectoryName != entry.domain)
+                {
+                    output.log("Entry [" + entry.domain + "] and DirectoryName [" + fi.Directory.Name + "] were in collision, fixed.");
+                    entry.domain = fi.Directory.Name;
+                }
                 siteTable.Add(entry);
             }
 
@@ -508,10 +514,17 @@ namespace imbMiningContext.MCRepository
 
             foreach (var se in all)
             {
-                var repo = se.domain.LoadDataStructure<imbMCWebSite>(folder, output);
-                if (repo != null)
+                try
                 {
-                    sites.Add(repo);
+                    var repo = se.domain.LoadDataStructure<imbMCWebSite>(folder, output);
+                    if (repo != null)
+                    {
+                        sites.Add(repo);
+                    }
+                } catch (Exception ex)
+                {
+                    output.log("Problem loading [" + se.domain + "] -> exception:" + ex.Message);
+
                 }
             }
 
