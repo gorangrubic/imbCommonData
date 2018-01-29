@@ -57,6 +57,7 @@ namespace imbMiningContext.TFModels.core
         [imb(imbAttributeName.measure_letter, "aTF")]
         [imb(imbAttributeName.measure_setUnit, "n")]
         [Description("Number of lemma forms detected in the set")]
+        [imb(imbAttributeName.reporting_columnWidth, "7")]
         public int AFreqPoints { get; set; } = 0;
 
         /// <summary>
@@ -70,6 +71,7 @@ namespace imbMiningContext.TFModels.core
         [imb(imbAttributeName.measure_letter, "TF-IDF")]
         [imb(imbAttributeName.measure_setUnit, "w")]
         [imb(imbAttributeName.reporting_valueformat, "F5")]
+        [imb(imbAttributeName.reporting_columnWidth, "7")]
         [Description("Final weight applied to the term")]
         public double weight { get; set; } = 0;
 
@@ -84,6 +86,8 @@ namespace imbMiningContext.TFModels.core
         }
 
         [imb(imbAttributeName.reporting_hide)]
+        [Category("Lemma")]
+        [DisplayName("Nominal form")]
         public string name { get; set; } = "";
 
         public void Define(string __name, string __nominalForm)
@@ -91,8 +95,10 @@ namespace imbMiningContext.TFModels.core
             nominalForm = __nominalForm;
             name = __name;
         }
-
+        
         [imb(imbAttributeName.reporting_hide)]
+        [Category("Inflections")]
+        [DisplayName("Derived words")]
         public String otherFormsStr
         {
             get
